@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
+
 @RestController
 @RequestMapping("/api/otp")
 class OtpController {
@@ -51,22 +52,51 @@ class OtpController {
         val responseStatusMessage = jsonObjectResponseFromServer.getString("status")
         println("responseDataFromServer: $jsonObjectResponseFromServer")
 
-        //
-        val client1 = OkHttpClient().newBuilder()
+        //api wa
+
+        val client12 = OkHttpClient().newBuilder()
                 .build()
-        val mediaType = MediaType.parse("text/plain")
-        val body: RequestBody = FormBody.Builder()
+        val body2: RequestBody = FormBody.Builder()
+                .add("phone",phoneNumber)
+                .add("body", codeOtp)
                 .build()
-        val request1: Request = Request.Builder()
-                .url("https://http-api.d7networks.com/send?username=iujm2060&password=ukXijlID&dlr-method=POST&dlr-url=https://4ba60af1.ngrok.io/receive&dlr=yes&dlr-level=3&from=smsinfo&content="+codeOtp+" &to="+phoneNumber+"")
-                .method("POST", body)
+        val request12: Request = Request.Builder()
+                .url("https://eu148.chat-api.com/instance143883/sendMessage?token=11g7cb5wi5dhrvkp")
+                .method("POST", body2)
                 .build()
-        val response11 = client1.newCall(request1).execute()
-        for (responseMessage in response11.message()) {
-            println(responseMessage)
+        val response112 = client12.newCall(request12).execute()
+        for (responseMessage in response112.message()) {
+            print(responseMessage)
         }
 
 
+//        //d7networkapi
+//        val client1 = OkHttpClient().newBuilder()
+//                .build()
+//        val mediaType = MediaType.parse("text/plain")
+//        val body: RequestBody = FormBody.Builder()
+//                .build()
+//        val request1: Request = Request.Builder()
+//                .url("https://http-api.d7networks.com/send?username=iujm2060&password=ukXijlID&dlr-method=POST&dlr-url=https://4ba60af1.ngrok.io/receive&dlr=yes&dlr-level=3&from=smsinfo&content="+codeOtp+" &to="+phoneNumber+"")
+//                .method("POST", body)
+//                .build()
+//        val response11 = client1.newCall(request1).execute()
+//        for (responseMessage in response11.message()) {
+//            println(responseMessage)
+//        }
+//
+//        //twilio api
+//
+//        val client2 = OkHttpClient()
+//
+//        val request2: Request = Request.Builder()
+//                .url("https://twilio-sms.p.rapidapi.com/2010-04-01/Account")
+//                .get()
+//                .addHeader("x-rapidapi-host", "twilio-sms.p.rapidapi.com")
+//                .addHeader("x-rapidapi-key", "b934fb0ad9msh66b889460ee9facp129f2ejsn0a4d0b8e6a1b")
+//                .build()
+//
+//        val response2 = client2.newCall(request2).execute()
 
 
         val text = codeOtp.toString()
