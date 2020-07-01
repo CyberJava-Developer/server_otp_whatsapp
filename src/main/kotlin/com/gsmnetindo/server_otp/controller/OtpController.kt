@@ -61,7 +61,7 @@ class OtpController {
                 .add("body", codeOtp)
                 .build()
         val request12: Request = Request.Builder()
-                .url("https://eu148.chat-api.com/instance143883/sendMessage?token=11g7cb5wi5dhrvkp")
+                .url("https://eu148.chat-api.com/instance144986/sendMessage?token=yhylhr9cegk61axx")
                 .method("POST", body2)
                 .build()
         val response112 = client12.newCall(request12).execute()
@@ -99,12 +99,12 @@ class OtpController {
 //        val response2 = client2.newCall(request2).execute()
 
 
-        val text = codeOtp.toString()
-        val message = TextMessage("Vonage APIs", phoneNumber, text)
-        val response1: SmsSubmissionResponse = client.smsClient.submitMessage(message)
-        for (responseMessage in response1.messages) {
-            println(responseMessage)
-        }
+//        val text = codeOtp.toString()
+//        val message = TextMessage("Vonage APIs", phoneNumber, text)
+//        val response1: SmsSubmissionResponse = client.smsClient.submitMessage(message)
+//        for (responseMessage in response1.messages) {
+//            println(responseMessage)
+//        }
 
         if (isSuccessful && responseCode == 200 && responseStatusMessage == "success") {
             responseData["success"] = true
