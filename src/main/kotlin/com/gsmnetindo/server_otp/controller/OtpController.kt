@@ -58,7 +58,7 @@ class OtpController {
                 .build()
         val body2: RequestBody = FormBody.Builder()
                 .add("phone",phoneNumber)
-                .add("body", "Aplikasi3s Kode : "+codeOtp)
+                .add("body", codeOtp+" adalah kode konfirmasi aplikasi 3s anda")
                 .build()
         val request12: Request = Request.Builder()
                 .url("https://eu148.chat-api.com/instance144986/sendMessage?token=yhylhr9cegk61axx")
